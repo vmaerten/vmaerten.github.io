@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Angular 2 - #ToursJS</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Valentin Maerten">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<link rel="stylesheet" href="css/custom.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+		<section>
+			<h1>Angular 2 !</h1>
+			<h2>Tours.JS #2 & GDG</h2>
+		</section>
+
+		<section>
+			<h2>Valentin Maerten</h2>
+			<img class="img" src="images/photo.png" width="20%" height="20%" alt="">
+			<ul class="espaceLi">
+				<li>Apside TOP</li>
+				<li>Polytech Tours</li>
+				<li>ToursJS</li>
+				<li>Hacking Mondays</li>
+				<li>Twitter : @v_maerten</li>
+			</ul>
+		</section>
+		<section>
+			<h3>Angular 2</h3>
+			<ul class="espaceLi">
+				<li>Framework pour créer des applications Web</li>
+				<li>Complete réécriture d'AngularJS</li>
+				<li>Sorti en version final le 15 septembre 2016</li>
+				<li>Framework basé sur les web components</li>
+				<li>Utilise Typescript</li>
+			</ul>
+		</section>
+
+		<section>
+			<section>
+				<h2>Un exemple de composant</h2>
+			</section>
+			<section>
+				<h3>Code minimal 1/2</h3>
+				<hr>
+				<h6>App.component.ts</h6>
+				<pre><code data-trim>
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `<h1>{{title}}</h1>`,
+
+})
+export class AppComponent {
+  title = 'app works!';
+}
+</code></pre>
+
+			</section>
+
+			<section>
+				<h3>Code minimal 2/2</h3>
+				<hr>
+				<h6>index.html</h6>
+				<pre><code>
+&lt;body&gt;
+  &lt;app-root&gt;Loading...&lt;/app-root&gt;
+&lt;/body&gt;
+</code></pre>
+			</section>
+
+			<section>
+				<h1>Demo</h1>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Comment démarrer un projet Angular 2 ?</h2>
+			</section>
+
+
+			<section>
+				<h3>Angular CLI !</h3>
+				<p>La boite à outils pour Angular 2. <br>Programme Node, installable avec NPM.</p>
+				<ul class="espaceLi">
+					<li>Créer un projet</li>
+					<li>Générer des squelettes de fichier</li>
+					<li>Lancer l'application avec un serveur de dev</li>
+					<li>Builder l'application</li>
+					<li>...</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Les principales commandes</h3>
+				<pre><code data-trim data-noescape>
+$ ng new APP_NAME
+$ ng serve
+$ ng generate TYPE NAME
+$ ng build --prod
+$ ng test
+  </code></pre>
+			</section>
+
+			<section>
+				<h2>Retour d'expérience</h2>
+				<h4>Avantage</h4>
+				<ul>
+					<li>Permet de créer le template de l'application facilement</li>
+					<li>Permet de servir & builder le contenu sans configuration</li>
+				</ul>
+				<h4>Inconvenient</h4>
+				<ul>
+					<li>L'outil de build est encore très peu performant</li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>L'organisation d'un projet</h2>
+			</section>
+
+			<section>
+				<h3>Les Modules</h3>
+				<ul class="espaceLi">
+					<li>Permettent d'organiser le code en block cohérent de fonctionalités</li>
+					<li>Au moins 1 module : Le RootModule</li>
+					<li>Identifié par le décorateur @NgModule</li>
+				</ul>
+			</section>
+
+			<section>
+				<h4>Une application Angular 2 est un arbre de Module</h4>
+
+				<img class="img" src="images/TreeModule.svg">
+			</section>
+
+			<section>
+				<h3>Les composants</h3>
+				<ul class="espaceLi">
+					<li>Morceaux d'interface utilisateur réutilisables dont la mécanique interne nous importe peu</li>
+					<li>Un composant possède un template</li>
+					<li>La logique du composant est dans une class TS</li>
+					<li>Un composant est déclaré dans un Module</li>
+				</ul>
+			</section>
+
+			<section>
+				<h4>Un Module est un arbre de composant</h4>
+
+				<img class="img" src="images/TreeComponent.svg">
+			</section>
+
+			<section>
+				<h3>Les services</h3>
+				<ul class="espaceLi">
+					<li>Généralement permet une abstraction de la couche d'accès aux données</li>
+					<li>Utilise l'injection de dépendance</li>
+					<li>Permet de garder le composant petit et réutilisable</li>
+					<li>Sont plus facilement testables</li>
+				</ul>
+			</section>
+			
+			<section>
+				<h3>Résumé</h3>
+				<img class="img" src="images/overview2.png" alt="">
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Focus sur les composants</h2>
+			</section>
+			<section>
+				<h3>Communication composant - template</h3>
+				<pre><code>
+<button>{{action}}</button>
+<button>{{action | uppercase}}</button>
+
+<button (click)="changeAction($event)">{{action}}</button>
+						</code></pre>
+				<hr>
+				<pre><code>
+export class MyComponent {
+  action : string = 'Valider';
+
+  changeAction(event) {
+    this.action = this.action == 'Valider' ? 'Annuler' : 'Valider';
+  }
+}
+						</code></pre>
+
+			</section>
+
+			<section>
+				<h3>Conditions et boucles</h3>
+				<pre><code class="html">
+<button *ngIf="isValid">Valider</button>
+<ul>
+  <li *ngFor="let language of languages">{{language}}</li>
+</ul>
+						</code></pre>
+
+				<pre><code class="typescript">
+export class MyComponent {
+  isValid : boolean = false;
+  languages = ['Java', 'Javascript', 'ruby', 'python', 'scala'];
+}
+						</code></pre>
+			</section>
+
+			<section>
+				<h3>Intéraction entre deux composants</h3>
+				<img class="img" src="images/interactComposantAngular2.svg">
+			</section>
+
+			<section>
+				<h3>Du code !</h3>
+				<h6>parent.component.ts</h6>
+				<pre><code data-trim>
+@Component({
+ selector: 'parent',
+ template: `<child [oneInput]="parameter"
+    (customEvent)="oneFunction($event)">
+</child>`,
+})
+export class ParentComponent {
+  parameter : string = 'toursJs';
+  oneFunction(event) {
+    // Event is "ok"
+    //Do something
+  }
+}
+</code></pre>
+
+				<h6>child.component.ts</h6>
+				<pre><code data-trim data-noescape>
+export class ChildComponent {
+  @Output() customEvent = new EventEmitter();
+  //customEvent.emit("ok");
+  @Input() oneInput: any;
+}
+						</code></pre>
+			</section>
+
+		</section>
+
+		<section>
+			<section>
+				<h2>Le routeur</h2>
+			</section>
+
+			<section>
+				<h3>Cas typique des routes</h3>
+
+				<img class="img" src="images/routerAngular2.svg" alt="">
+			</section>
+
+			<section>
+				<h3>Déclarer des routes</h3>
+
+				<pre><code>
+const routes: Routes = [
+  {path: '', component : AppRoot},
+
+  {path: 'profil/:id', component : ProfilComponent},
+
+  {path: 'dashboard' , component : DashboardComponent,
+         canActivate: [LoggedInGuard, OnlyAdminGuard]},
+];
+
+export const routing = RouterModule.forRoot(routes,  { useHash: true });
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Utiliser les routes</h3>
+				<h6>Dans un template</h6>
+				<pre><code class="html">
+&lt;a [routerLink]="['/profil', user.id]"&gt;
+				</code></pre>
+				<h6>Dans un composant</h6>
+				<pre><code>
+goToProfil() {
+   this.router.navigate(['/profil', this.user.id]);
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Les fonctionnalités avancées</h3>
+				<ul class="espaceLi">
+					<li>Nested-view</li>
+					<li>Resolver</li>
+					<li>Mécanisme de gardien</li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Les bibliothèques externes</h2>
+			</section>
+
+			<section>
+				<h3>Ajouter une lib externe</h3>
+				<ol class="espaceLi">
+					<li>npm install LIB</li>
+					<li>Importer le module dans le(s) module(s)</li>
+					<li>Utiliser la lib directement dans nos composants</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Démo</h2>
+			</section>
+		</section>
+
+
+		<section>
+			<section>
+				<h2>Conclusion</h2>
+			</section>
+
+
+			<section>
+				<h3>Retour d'expérience</h3>
+				<ul>
+					<li>Création d'une web app pour Apside à partir de la RC</li>
+					<li>A énormement bougé pendant la RC</li>
+					<li>Grande communauté</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Des ressources</h3>
+				<ul>
+					<li>Le livre des ninjas Squad</li>
+					<li><a href="https://egghead.io/">https://egghead.io/</a></li>
+					<li><a href="https://johnpapa.net/">https://johnpapa.net/</a></li>
+					<li><a href="https://angular.io/docs/ts/latest/tutorial/">https://angular.io/docs/ts/latest/tutorial/</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Merci !</h1>
+			</section>
+		</section>
+
+
+
+	</div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+	// More info https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+		slideNumber: 'c/t',
+
+		transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+		// More info https://github.com/hakimel/reveal.js#dependencies
+		dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/zoom-js/zoom.js', async: true },
+			{ src: 'plugin/notes/notes.js', async: true }
+		]
+	});
+
+</script>
+
+</body>
+</html>
